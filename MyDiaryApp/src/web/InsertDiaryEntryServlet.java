@@ -32,10 +32,6 @@ public class InsertDiaryEntryServlet extends HttpServlet {
 		// clean paramters
 		entryContent = Jsoup.clean(entryContent, Whitelist.basic());
 		
-		// log parameters
-		System.out.println("------------------------------------------------");
-		System.out.println(entryContent);
-		
 		// session attribute
 		HttpSession session = req.getSession();
 		User user = (User) session.getAttribute("user");
@@ -48,6 +44,7 @@ public class InsertDiaryEntryServlet extends HttpServlet {
 		DiaryDAO dd = null;
 		
 		try {
+			// check for empty entries
 			if(entryContent.isEmpty())
 				throw new InvalidDataException("Entry is empty!");
 			
@@ -56,18 +53,10 @@ public class InsertDiaryEntryServlet extends HttpServlet {
 			diary.setUserId(user.getId());
 			diary.setEntryContent(entryContent);
 			
-			// log diary
-			System.out.println("------------------------------------------------");
-			System.out.println(diary);
-			
 			// insert into db
 			conn = DBConnection.getInstance().getConnection();
 			dd = new DiaryDAO();
 			dd.insert(conn, diary);
-			
-			// log success
-			System.out.println("------------------------------------------------");
-			System.out.println("Record inserted successfully!");
 			
 			// forward 
 			resp.sendRedirect("dashboard.jsp?page=1");
@@ -78,8 +67,10 @@ public class InsertDiaryEntryServlet extends HttpServlet {
 			req.setAttribute("message", ide.getMessage());
 			rd.forward(req, resp);
 		} 
-		catch (ClassNotFoundException | SQLException e) {
-			resp.sendError(500, e.getMessage());
+		catch (Exception e) {
+			rd = req.getRequestDispatcher("../exceptions/general_error_handler.jsp");
+			req.setAttribute("error-message", e.getMessage());
+			rd.forward(req, resp);
 		} 
 		finally {
 			try {
@@ -92,7 +83,9 @@ public class InsertDiaryEntryServlet extends HttpServlet {
 					dd.close();
 			}
 			catch(SQLException e) {
-				resp.sendError(500, e.getMessage());
+				rd = req.getRequestDispatcher("../exceptions/general_error_handler.jsp");
+				req.setAttribute("error-message", e.getMessage());
+				rd.forward(req, resp);
 			}
 		}
 	}

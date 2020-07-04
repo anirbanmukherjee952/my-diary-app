@@ -29,7 +29,6 @@ public class FetchDiaryEntriesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// fetch the parameters
 		int currentPage = Integer.parseInt(req.getParameter("currentPage"));
-		System.out.println(currentPage);
 		
 		// session attribute
 		HttpSession session = req.getSession();
@@ -48,15 +47,17 @@ public class FetchDiaryEntriesServlet extends HttpServlet {
 		DiaryDAO dd = null;
 		
 		try {
+			// create connection
 			conn = DBConnection.getInstance().getConnection();
+			
+			// create DAO object
 			dd = new DiaryDAO();
+			
+			// fetch data
 			ArrayList<Diary> entries = dd.fetch(conn, user.getId(), (currentPage-1)*entriesPerPage, entriesPerPage);
 			
-			// log entries
-			System.out.println(entries);
-			
+			// prepare response
 			if(entries.isEmpty()) {
-				System.out.println("No entries found!");
 				resp.getWriter().print("");
 			}
 			else {
@@ -81,8 +82,10 @@ public class FetchDiaryEntriesServlet extends HttpServlet {
 				resp.getWriter().println(responses.toJSONString());
 			}
 		} 
-		catch (ClassNotFoundException | SQLException e) {
-			resp.sendError(500, e.getMessage());
+		catch (Exception e) {
+			rd = req.getRequestDispatcher("../exceptions/general_error_handler.jsp");
+			req.setAttribute("error-message", e.getMessage());
+			rd.forward(req, resp);
 		} 
 		finally {
 			try {
@@ -95,7 +98,9 @@ public class FetchDiaryEntriesServlet extends HttpServlet {
 					dd.close();
 			}
 			catch(SQLException e) {
-				resp.sendError(500, e.getMessage());
+				rd = req.getRequestDispatcher("../exceptions/general_error_handler.jsp");
+				req.setAttribute("error-message", e.getMessage());
+				rd.forward(req, resp);
 			}
 		}
 	}

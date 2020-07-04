@@ -19,10 +19,7 @@
 				    	<a class="nav-link" href="index.jsp">Home</a>
 				    </li>
 				    <li class="navbar-nav">
-				    	<a class="nav-item nav-link" href="#">About</a>
-				    </li>
-				    <li class="navbar-nav">
-				    	<a class="nav-item nav-link" href="#">Contact us</a>
+				    	<a class="nav-item nav-link" href="about.jsp">About</a>
 				    </li>
 				</ul>
 				<!-- Sign in form -->

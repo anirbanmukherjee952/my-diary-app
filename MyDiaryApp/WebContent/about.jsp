@@ -1,0 +1,19 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib tagdir="/WEB-INF/tags" prefix="t" %>
+<t:default>
+	<br>
+	<br>
+	<div class="container">
+		<h1>About Us</h1>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris eu mauris tristique, semper justo sit amet, sollicitudin tellus. Ut suscipit consequat bibendum. Vestibulum suscipit consequat sodales. Donec fringilla venenatis justo, non facilisis nibh porttitor eu. Maecenas in scelerisque dui. Quisque id urna fermentum, dictum ex ac, cursus tellus. Sed eu mattis augue. Sed condimentum dapibus ipsum vitae viverra. Suspendisse pulvinar vestibulum augue, quis faucibus enim. Donec id leo risus.</p>
+
+		<p>Nam vitae dolor malesuada tortor mollis auctor. Pellentesque gravida dapibus velit quis feugiat. Praesent interdum, quam quis ornare finibus, dolor quam tincidunt tortor, mollis pretium est nisl in est. Ut ut ipsum vitae nulla ornare iaculis luctus cursus ligula. Aenean tincidunt, diam non pulvinar pellentesque, lacus mauris mattis metus, sit amet egestas ipsum tortor at turpis. Donec non accumsan nibh. Vestibulum gravida aliquam lectus, sit amet mollis nunc convallis eu. Pellentesque dapibus, nibh sit amet tincidunt pellentesque, ligula dui volutpat mauris, a posuere risus urna at purus.</p>
+
+		<p>Mauris hendrerit tellus id euismod aliquet. Donec justo mauris, iaculis eget placerat at, mollis in libero. Praesent euismod mauris ac lorem maximus molestie. Aenean vel tortor arcu. Nam faucibus congue massa a consequat. Suspendisse nec orci at mi ornare sollicitudin. Mauris porta tempor odio, sit amet pharetra ipsum eleifend quis. Curabitur elit est, finibus vel vestibulum eget, iaculis a ex. Vestibulum sit amet mi nisi. Cras eget magna arcu. Aenean tellus turpis, tristique id ultrices nec, tempor faucibus libero. Curabitur semper orci risus, non pharetra leo porta in. Nulla efficitur metus eget volutpat porta. Donec eros velit, rhoncus at lobortis vel, vestibulum vitae dolor. Morbi mollis elit purus, nec molestie ligula cursus vel.</p>
+		
+		<p>Sed pharetra massa massa, quis sodales sapien maximus ac. Morbi accumsan, purus ut euismod egestas, erat dolor vestibulum ligula, sed accumsan ligula diam at lectus. Sed nec condimentum neque, fringilla iaculis ligula. Proin sed odio ac dolor sagittis pellentesque. Nullam ligula nisi, cursus eget pellentesque vitae, lobortis sed ante. Vestibulum nec neque volutpat, sollicitudin sem placerat, viverra quam. Etiam in mollis libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Phasellus molestie dolor id fringilla elementum. Integer dignissim odio non sapien mattis, eu tempor orci tristique. Quisque quis ullamcorper tellus. Sed finibus libero sit amet felis dictum vehicula. Ut accumsan sapien quis pretium malesuada. Sed elit tellus, sodales et fringilla feugiat, egestas varius lacus. Praesent vitae dictum diam, at tincidunt orci.</p>
+
+		<p>Nunc at odio eleifend, tincidunt augue ut, ultrices est. Aenean tincidunt erat at posuere tristique. Nullam eget efficitur justo. Praesent egestas lacinia diam, ac blandit ligula dictum eu. Curabitur rutrum nunc nunc, eget euismod tortor tempor a. Vestibulum odio eros, ullamcorper quis magna id, pharetra aliquam felis. Nullam et turpis tristique, mollis turpis non, molestie velit. Vestibulum sapien massa, sollicitudin ac nisi et, viverra eleifend urna. Vivamus a mi id odio viverra ultricies vel non nunc. Maecenas dapibus id eros ac accumsan. Nunc pulvinar iaculis dui nec viverra. Mauris nulla dui, pharetra at nunc nec, suscipit volutpat risus. Etiam non ornare lectus, et ornare tellus. Ut neque purus, dictum ac tortor id, varius dictum mauris.</p>
+	</div>
+</t:default>

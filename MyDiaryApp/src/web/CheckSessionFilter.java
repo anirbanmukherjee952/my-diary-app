@@ -34,7 +34,7 @@ public class CheckSessionFilter implements Filter {
 			chain.doFilter(req, resp);
 		}
 		else {
-			response.sendRedirect("../session_expired.jsp");
+			response.sendRedirect("../exceptions/session_expired.jsp");
 		}
 	}
 

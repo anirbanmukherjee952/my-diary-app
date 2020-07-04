@@ -37,11 +37,6 @@ public class UserAuthenticationServlet extends HttpServlet {
 		email = Jsoup.clean(email, Whitelist.none());
 		password = Jsoup.clean(password, Whitelist.none());
 		
-		// log the parameters
-		System.out.println("------------------------------------------------");
-		System.out.println(email);
-		System.out.println(password);
-		
 		// decleare RequestDispatcher object
 		RequestDispatcher rd = null;
 		
@@ -73,9 +68,6 @@ public class UserAuthenticationServlet extends HttpServlet {
 			if(!password.equals(existingPassword))
 				throw new InvalidDataException("Incorrect email and password combination");
 			
-//			int records = DiaryDAO.count(conn, user.getId());
-//			int pages = records / recordsPerPage;
-			
 			// on success create a new session
 			HttpSession session = req.getSession(true);
 			session.setAttribute("user", user);
@@ -90,8 +82,10 @@ public class UserAuthenticationServlet extends HttpServlet {
 			
 			rd.forward(req, resp);
 		} 
-		catch (NoSuchAlgorithmException | ClassNotFoundException | SQLException e) {
-			resp.sendError(500);
+		catch (Exception e) {
+			rd = req.getRequestDispatcher("./exceptions/general_error_handler.jsp");
+			req.setAttribute("error-message", e.getMessage());
+			rd.forward(req, resp);
 		}
 		finally {
 			try {
@@ -104,7 +98,9 @@ public class UserAuthenticationServlet extends HttpServlet {
 					ud.close();
 			}
 			catch(SQLException e) {
-				resp.sendError(500, e.getMessage());
+				rd = req.getRequestDispatcher("./exceptions/general_error_handler.jsp");
+				req.setAttribute("error-message", e.getMessage());
+				rd.forward(req, resp);
 			}
 		}
 	}

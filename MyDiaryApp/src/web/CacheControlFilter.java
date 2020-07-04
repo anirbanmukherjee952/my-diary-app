@@ -22,10 +22,9 @@ public class CacheControlFilter implements Filter {
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) req;
 		HttpServletResponse response = (HttpServletResponse) resp;
 		response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
-		chain.doFilter(request, response);
+		chain.doFilter(req, response);
 	}
 
 	@Override

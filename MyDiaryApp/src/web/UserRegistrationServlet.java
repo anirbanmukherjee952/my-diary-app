@@ -50,13 +50,6 @@ public class UserRegistrationServlet extends HttpServlet {
 		password = Jsoup.clean(password, Whitelist.none());
 		confirmedPassword = Jsoup.clean(confirmedPassword, Whitelist.none());
 		
-		// log parameters
-		System.out.println("------------------------------------------------");
-		System.out.println(name);
-		System.out.println(email);
-		System.out.println(password);
-		System.out.println(confirmedPassword);
-		
 		// App scope
 		RequestDispatcher rd = null;
 		
@@ -98,10 +91,6 @@ public class UserRegistrationServlet extends HttpServlet {
 			user.setPassword(password);
 			user.setSalt(salt);
 			
-			// log user
-			System.out.println("------------------------------------------------");
-			System.out.println(user);
-			
 			// insert into db
 			conn = DBConnection.getInstance().getConnection();
 			ud = new UserDAO();
@@ -110,10 +99,6 @@ public class UserRegistrationServlet extends HttpServlet {
 				throw new InvalidDataException("Email already exists!");
 			
 			ud.insert(conn, user);
-			
-			// log success
-			System.out.println("------------------------------------------------");
-			System.out.println("Record inserted successfully!");
 			
 			// forward 
 			rd = req.getRequestDispatcher("index.jsp");
@@ -128,8 +113,10 @@ public class UserRegistrationServlet extends HttpServlet {
 			
 			rd.forward(req, resp);
 		} 
-		catch (NoSuchAlgorithmException | ClassNotFoundException | SQLException e) {
-			resp.sendError(500, e.getMessage());
+		catch (Exception e) {
+			rd = req.getRequestDispatcher("./exceptions/general_error_handler.jsp");
+			req.setAttribute("error-message", e.getMessage());
+			rd.forward(req, resp);
 		} 
 		finally {
 			try {
@@ -142,7 +129,9 @@ public class UserRegistrationServlet extends HttpServlet {
 					ud.close();
 			}
 			catch(SQLException e) {
-				resp.sendError(500, e.getMessage());
+				rd = req.getRequestDispatcher("./exceptions/general_error_handler.jsp");
+				req.setAttribute("error-message", e.getMessage());
+				rd.forward(req, resp);
 			}
 		}
 	}

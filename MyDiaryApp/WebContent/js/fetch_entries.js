@@ -1,8 +1,7 @@
 function createAlert(){
 	var div = document.createElement("div");
 	div.className = "alert alert-info";
-	div.appendChild(document.createElement("strong").appendChild(document.createTextNode("Empty! ")));
-	div.appendChild(document.createTextNode("Nothing to show. Create a new entry."));
+	div.innerHTML = "<strong>Empty diary!</strong> Create some entries.";
 	
 	return div;
 }
